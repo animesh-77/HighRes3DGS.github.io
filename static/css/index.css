@@ -155,3 +155,47 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+
+/* For zoomable images */
+.collapsible-header {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+}
+
+/* .content {
+  display: none;
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+} */
+
+.collapsible.active .content {
+  display: block;
+  opacity: 1;
+}
+
+.image-zoom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.original-image {
+  width: 45%;
+  transition: transform 0.3s ease;
+}
+
+.zoomed-image {
+  width: 45%;
+  height: 300px;
+  overflow: hidden;
+  display: none;
+}
+
+.zoomed-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

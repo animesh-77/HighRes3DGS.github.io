@@ -76,3 +76,52 @@ $(document).ready(function() {
     bulmaSlider.attach();
 
 })
+
+// For zoomable images
+document.addEventListener('DOMContentLoaded', function() {
+  const collapsibles = document.querySelectorAll('.collapsible');
+  
+  collapsibles.forEach(collapsible => {
+    const originalImages = collapsible.querySelectorAll('.original-image');
+    const zoomedImages = collapsible.querySelectorAll('.zoomed-image');
+    let zoomLevel = 2; // Adjust this value to change zoom level
+    
+    originalImages.forEach((originalImage, index) => {
+      const zoomedImage = zoomedImages[index];
+
+      originalImage.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        zoomedImage.style.display = 'block';
+        zoomedImage.innerHTML = `<img src="${this.src}" style="transform: scale(${zoomLevel}); transform-origin: ${xPercent}% ${yPercent}%;">`;
+      });
+
+      originalImage.addEventListener('mouseleave', function() {
+        zoomedImage.style.display = 'none';
+      });
+    });
+  });
+});
+
+// Keep your existing code for collapsible functionality
+document.addEventListener('DOMContentLoaded', function() {
+  var coll = document.getElementsByClassName("collapsible-header");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+});
