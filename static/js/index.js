@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
   collapsibles.forEach(collapsible => {
     const originalImages = collapsible.querySelectorAll('.original-image');
     const zoomedImages = collapsible.querySelectorAll('.zoomed-image');
-    let zoomLevel = 2; // Adjust this value to change zoom level
+    let zoomLevel = 4; // Adjust this value to change zoom level
     
     originalImages.forEach((originalImage, index) => {
       const zoomedImage = zoomedImages[index];
@@ -109,6 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Keep your existing code for collapsible functionality
+// document.addEventListener('DOMContentLoaded', function() {
+//   var coll = document.getElementsByClassName("collapsible-header");
+//   var i;
+
+//   for (i = 0; i < coll.length; i++) {
+//     coll[i].addEventListener("click", function() {
+//       this.classList.toggle("active");
+//       var content = this.nextElementSibling;
+//       if (content.style.display === "block") {
+//         content.style.display = "none";
+//       } else {
+//         content.style.display = "block";
+//       }
+//     });
+//   }
+// });
+
 document.addEventListener('DOMContentLoaded', function() {
   var coll = document.getElementsByClassName("collapsible-header");
   var i;
@@ -117,10 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
     coll[i].addEventListener("click", function() {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
+      if (content.classList.contains("collapsed")) {
+        content.classList.remove("collapsed");
+        this.innerHTML = this.innerHTML.replace("▶", "▼");
       } else {
-        content.style.display = "block";
+        content.classList.add("collapsed");
+        this.innerHTML = this.innerHTML.replace("▼", "▶");
       }
     });
   }
