@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="High Resolution Novel view synthesis with 3DGS with a focus on humans subjects">
+        content="High-Resolution Novel View Synthesis Using 3D Gaussian Splatting: A Focus on Human Subjects">
   <meta name="keywords" content="3DGS, gaussian splatting">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>High Resolution Novel view synthesis with 3DGS with a focus on humans subjects</title>
+  <title>High-Resolution Novel View Synthesis Using 3D Gaussian Splatting: A Focus on Human Subjects</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -88,7 +88,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">High Resolution Novel view synthesis with 3DGS with a focus on humans subjects</h1>
+          <h1 class="title is-1 publication-title">High-Resolution Novel View Synthesis Using 3D Gaussian Splatting: A Focus on Human Subjects</h1>
           <div class="is-size-5 publication-authors">
               <span class="author-block">
                   <a href="https://animesh-77.github.io/">Animesh Srivastava</a><sup>1</sup>
@@ -166,7 +166,7 @@
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">3DGS</span> for High Resolution Novel View Synthesis of human subjects
+        A custom ultra-high-resolution dataset was created in a photogrammetry rig for this thesis
       </h2>
     </div>
   </div>
@@ -235,16 +235,16 @@
           <p>
            
             Recent advancements in 3D Gaussian Splatting (3DGS) have demonstrated significant superiority over 
-            the previous state-of-the-art NeRF based methods for novel view synthesis, achieving higher performance
-             with lower training times and computational costs. This breakthrough represents a paradigm 
-             shift in 3D reconstruction and novel view synthesis methods. This thesis aims to rigorously
-              investigate the limitations of the current 3DGS pipeline, in the context of image resolution
-               during both the training and rendering phases. The focus is on High Resolution Novel View 
-               Synthesis of human subjects captured using an ultra-high-resolution, photogrammetry setup. 
-               Additionally, this thesis investigates four distinct modifications to the traditional 3DGS 
-               training pipeline with an aim to identify key areas of the pipeline most responsible for 
-               enhancing the quality of novel view rendering especially when training on high-resolution 
-               data involving human subjects. 
+            the previous state-of-the-art NeRF based methods for novel view synthesis, achieving higher performance 
+            with lower training times and computational costs. This breakthrough 
+            represents a paradigm shift in 3D reconstruction and novel view synthesis methods. This thesis aims
+            to rigorously investigate the limitations of the current 3DGS pipeline, in the context of image
+            resolution during both the training and rendering phases. The focus is on High Resolution Novel
+            View Synthesis of human subjects captured using an ultra-high-resolution, photogrammetry setup.
+            Additionally, this thesis investigates four distinct modifications to the traditional 3DGS training
+            pipeline with an aim to identify key areas of the pipeline most responsible for enhancing the
+            quality of novel view rendering especially when training on high-resolution data involving human
+            subjects.
           </p>
         </div>
       </div>
@@ -270,116 +270,85 @@
   <div class="container is-max-desktop">
 
     <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
 
-      <!-- Visual Effects. -->
-      <div class="column">
+        <div class="content has-text-justified">
+          We tested out 4 variants of the 3DGS model, including the baseline model, to investigate the impact of different hyperparameters.
+          All renders on this page are at (3840x2160) 4K resolution. Simply hover over the images to zoom in on high frequency features.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+
+      <!-- Baseline 3DGS -->
+      <div class="column is-half">
         <div class="content">
           <h2 class="title is-3">Baseline 3DGS</h2>
           <p>
-            Results from baseline 3DGS model trained on ultra-high-resolution images.
+            Baseline 3DGS model with all hyperparameters set to default values as described in the original
+            implementation by <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/">Kerbl et al. (2023)</a>. 
+            The choice of hyperparameters was made to balance the trade-off between training time and rendering quality.
           </p>
-          <!-- <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/Handbag.mp4"
-                    type="video/mp4">
-          </video> -->
         </div>
       </div>
-      <!--/ Visual Effects. -->
 
-      <!-- Matting. -->
-      <div class="column">
+      <!-- 60K iterations -->
+      <div class="column is-half">
         <h2 class="title is-3">60K iterations</h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              For ultra-high-resolution images, the 3DGS model was trained for 60K iterations.
+              The 3DGS model was trained for twice the number of iterations compared to the baseline model. Consequently, 
+              all key steps in the pipeline were also scaled up by a factor of two to maintain the proportional relationship 
+              between different training phases.
             </p>
-            <!-- <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/Handbag.mp4"
-                    type="video/mp4">
-            </video> -->
           </div>
         </div>
       </div>
+
+    </div>
+
+    <div class="columns is-centered">
+
+      <!-- High-Resolution Rendering -->
+      <div class="column is-half">
+        <div class="content">
+          <h2 class="title is-3">Inclusion of Focal Frequency Loss</h2>
+          <p>
+            A Focal Frequency Loss <a href="https://arxiv.org/abs/2012.12821">Liming Jiang et al. (2020)</a>
+            term was incorporated in the loss function during training to improve the rendering quality of
+            high frequency features. 
+          </p>
+        </div>
+      </div>
+
+      <!-- Optimized Training -->
+      <div class="column is-half">
+        <h2 class="title is-3">Training on PNG images</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              The 3DGS model was trained on PNG images instead of the default JPEG format to investigate the
+              impact of image compression on the rendering quality of the model.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     
 
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-     <!-- <div class="columns is-centered"> -->
-      <!-- <div class="column is-full-width"> -->
-        <!-- <h2 class="title is-3">Animation</h2> -->
-<!--  -->
-        <!-- Interpolating. -->
-        <!-- <h3 class="title is-4">Interpolating states</h3> -->
-        <!-- <div class="content has-text-justified"> -->
-          <!-- <p> -->
-            <!-- We can also animate the scene by interpolating the deformation latent codes of two input -->
-            <!-- frames. Use the slider here to linearly interpolate between the left frame and the right -->
-            <!-- frame. -->
-          <!-- </p> -->
-        <!-- </div> -->
-        <!-- <div class="columns is-vcentered interpolation-panel"> -->
-          <!-- <div class="column is-3 has-text-centered"> -->
-            <!-- <img src="./static/images/interpolate_start.jpg" -->
-                 <!-- class="interpolation-image" -->
-                 <!-- alt="Interpolate start reference image."/> -->
-            <!-- <p>Start Frame</p> -->
-          <!-- </div> -->
-          <!-- <div class="column interpolation-video-column"> -->
-            <!-- <div id="interpolation-image-wrapper"> -->
-              <!-- Loading... -->
-            <!-- </div> -->
-            <!-- <input class="slider is-fullwidth is-large is-info" -->
-                   <!-- id="interpolation-slider" -->
-                   <!-- step="1" min="0" max="100" value="0" type="range"> -->
-          <!-- </div> -->
-          <!-- <div class="column is-3 has-text-centered"> -->
-            <!-- <img src="./static/images/interpolate_end.jpg" -->
-                 <!-- class="interpolation-image" -->
-                 <!-- alt="Interpolation end reference image."/> -->
-            <!-- <p class="is-bold">End Frame</p> -->
-          <!-- </div> -->
-        <!-- </div> -->
-        <!-- <br/> -->
-        <!-- / Interpolating. -->
-<!--  -->
-        <!-- Re-rendering. -->
-        <!-- <h3 class="title is-4">Re-rendering the input video</h3> -->
-        <!-- <div class="content has-text-justified"> -->
-          <!-- <p> -->
-            <!-- Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel -->
-            <!-- viewpoint such as a stabilized camera by playing back the training deformations. -->
-          <!-- </p> -->
-        <!-- </div> -->
-        <!-- <div class="content has-text-centered"> -->
-          <!-- <video id="replay-video" -->
-                 <!-- controls -->
-                 <!-- muted -->
-                 <!-- preload -->
-                 <!-- playsinline -->
-                 <!-- width="75%"> -->
-            <!-- <source src="./static/videos/replay.mp4" -->
-                    <!-- type="video/mp4"> -->
-          <!-- </video> -->
-        <!-- </div> -->
-        <!-- / Re-rendering. -->
-<!--  -->
-      <!-- </div> -->
-    <!-- </div> -->
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
 
         <div class="content has-text-justified">
-            <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">MrNeRF/awesome-3D-gaussian-splatting</a> is a curated list of 3DGS papers and resources which
-            was extremely helpful in the development of my thesis.
+            <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">MrNeRF/awesome-3D-gaussian-splatting</a> is a 
+            curated list of 3DGS papers and resources which
+            was extremely helpful in the for my thesis.
           </p>
         </div>
       </div>
