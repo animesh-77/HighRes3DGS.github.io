@@ -312,7 +312,6 @@
 
     <div class="columns is-centered">
 
-      <!-- High-Resolution Rendering -->
       <div class="column is-half">
         <div class="content">
           <h2 class="title is-3">Inclusion of Focal Frequency Loss</h2>
@@ -324,7 +323,6 @@
         </div>
       </div>
 
-      <!-- Optimized Training -->
       <div class="column is-half">
         <h2 class="title is-3">Training on PNG images</h2>
         <div class="columns is-centered">
@@ -334,6 +332,22 @@
               impact of image compression on the rendering quality of the model.
             </p>
           </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column is-half">
+        <div class="content">
+          <h2 class="title is-3">Training on masked images</h2>
+          <p>
+            The 3DGS model was trained on masked images to focus only on the foreground objects in the scene. The masks were
+            generated using <a href="https://github.com/IDEA-Research/GroundingDINO">Grounding DINO</a> capable of
+            detecting arbitrary objects with just query texts. We used simple bounding boxes to mask out the background and retain only
+            the human subject and the related objects in the foreground.
+          </p>
         </div>
       </div>
 
@@ -425,7 +439,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="collapsible">
-          <h3 class="collapsible-header">Model trained for 60K iterations &#9654; </h3>
+          <h3 class="collapsible-header">60K iterations &#9654; </h3>
           <div class="collapsible-content collapsed">
             <div class="content">
               <div class="image-zoom-container">
@@ -474,7 +488,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="collapsible">
-          <h3 class="collapsible-header">Model trained on PNG images &#9654; </h3>
+          <h3 class="collapsible-header">Training on PNG images &#9654; </h3>
           <!-- <div class="collapsible-content"> -->
           <div class="collapsible-content collapsed">
             <div class="content">
@@ -504,7 +518,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="collapsible">
-          <h3 class="collapsible-header">Model trained with Focal Frequency Loss &#9654; </h3>
+          <h3 class="collapsible-header">Inclusion of Focal Frequency Loss &#9654; </h3>
           <div class="collapsible-content collapsed">
             <div class="content">
               <div class="image-zoom-container">
@@ -536,7 +550,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="collapsible">
-          <h3 class="collapsible-header">Model trained masked images &#9654; </h3>
+          <h3 class="collapsible-header">Training on masked images &#9654; </h3>
           <div class="collapsible-content collapsed">
             <div class="content">
               <div class="image-zoom-container">
